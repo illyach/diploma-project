@@ -7,12 +7,14 @@ const showProgress = ref(false);
 const targetTvl = ref(0);
 const originalTvl = ref(null);
 const marketCapRank = ref(null);
-
+const fees30d = ref(null);
 // Обрахунок підсумкового балу
 const finalScore = computed(() => {
   const tvlScore = targetTvl.value || 0;
   const rankScore = marketCapRank.value ? (1 / marketCapRank.value) * 100 : 0;
-  return Math.min(Math.ceil(tvlScore + rankScore), 100);
+  const feesScore = fees30d.value ? fees30d.value / 1_000_000 : 0;
+console.log("fees", feesScore,  "rank" , rankScore,"tvl", tvlScore )
+  return Math.min(Math.ceil(tvlScore + rankScore + feesScore), 100);
 });
 
 watch(input, async (newVal) => {
@@ -22,20 +24,32 @@ watch(input, async (newVal) => {
   }
 
   try {
-    const res = await fetch('/api/llama/v2/chains');
-    const data = await res.json();
 
-    const found = data.find((item) => {
+    const llamaRes = await fetch('/api/llama/v2/chains');
+    const llamaData = await llamaRes.json();
+
+
+    const found = llamaData.find((item) => {
       const nameMatch = item.name?.toLowerCase() === newVal.toLowerCase();
       const symbolMatch = item.tokenSymbol?.toLowerCase() === newVal.toLowerCase();
+      console.log(nameMatch)
       return nameMatch || symbolMatch;
+
     });
 
-    const marketRes = await fetch('/api/coingecko/api/v3/coins/markets?vs_currency=usd&category=layer-1&order=market_cap_desc&per_page=50&page=1&sparkline=false&locale=en');
 
-    const marketData = await marketRes.json();
+    const layer1Res = await fetch('/api/coingecko/api/v3/coins/markets?vs_currency=usd&category=layer-1&order=market_cap_desc&per_page=250&page=1&sparkline=false&locale=en');
+    const layer1Data = await layer1Res.json();
 
-    const market = marketData.find((item) => {
+
+    const layer2Res = await fetch('/api/coingecko/api/v3/coins/markets?vs_currency=usd&category=layer-2&order=market_cap_desc&per_page=250&page=1&sparkline=false&locale=en');
+    const layer2Data = await layer2Res.json();
+
+
+    const combinedData = [...layer1Data, ...layer2Data];
+
+
+    const market = combinedData.find((item) => {
       const nameMatch = item.name?.toLowerCase() === newVal.toLowerCase();
       const symbolMatch = item.symbol?.toLowerCase() === newVal.toLowerCase();
       return nameMatch || symbolMatch;
@@ -45,6 +59,10 @@ watch(input, async (newVal) => {
       originalTvl.value = found.tvl;
       targetTvl.value = Math.min(Math.floor(found.tvl / 100_000_000), 100);
       showProgress.value = true;
+      const feesRes = await fetch(`/api/llama/overview/fees/${found.name}?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true&dataType=dailyFees`);
+      const feesData = await feesRes.json();
+      console.log('Fees data for', feesData);
+      fees30d.value = feesData.total30d || 0;
     } else {
       originalTvl.value = null;
       targetTvl.value = 0;
@@ -79,13 +97,14 @@ watch(input, async (newVal) => {
     <el-input
       v-model="input"
       style="width: 240px"
-      placeholder="Введи назву блокчейна"
+      placeholder="Введи назву блокчейна / тікер"
     />
 
     <div v-if="showProgress" class="score-section">
       <ProgresBar :target="finalScore" />
       <p class="tvl-text">TVL: {{ originalTvl?.toLocaleString() || '—' }} $</p>
       <p class="tvl-text">Rank: {{ marketCapRank || '—' }}</p>
+      <p class="tvl-text">Fees(30d): {{ fees30d ? (fees30d / 1_000_000).toFixed(2) : '—' }} M $</p>
       <p class="tvl-text">Score: {{ finalScore }}</p>
     </div>
   </div>
