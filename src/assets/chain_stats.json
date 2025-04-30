@@ -1,0 +1,551 @@
+[
+  {
+    "name": "aptos",
+    "symbol": "apt",
+    "DAILY_TXNS": 3273100,
+    "MAU": 11990290,
+    "FEES": 1862.25537408,
+    "WEEKLY_DEVS_CORE": 77,
+    "TWITTER_FOLLOWERS": 5454
+  },
+  {
+    "name": "avalanche",
+    "symbol": "avax",
+    "DAILY_TXNS": 286032,
+    "MAU": 438459,
+    "FEES": 5059.166134926143,
+    "WEEKLY_DEVS_CORE": 70,
+    "TWITTER_FOLLOWERS": 1129692
+  },
+  {
+    "name": "near",
+    "symbol": "near",
+    "DAILY_TXNS": 4793836,
+    "MAU": 45511887,
+    "FEES": 7978.567123332488,
+    "WEEKLY_DEVS_CORE": 166,
+    "TWITTER_FOLLOWERS": 1869137
+  },
+  {
+    "name": "sui",
+    "symbol": "sui",
+    "DAILY_TXNS": 6802417,
+    "MAU": 42115276,
+    "FEES": 83682.08995726389,
+    "WEEKLY_DEVS_CORE": 107,
+    "TWITTER_FOLLOWERS": 1043749
+  },
+  {
+    "name": "polygon",
+    "symbol": "matic",
+    "DAILY_TXNS": 2820030,
+    "MAU": 5015832,
+    "FEES": 10154.932701084617,
+    "WEEKLY_DEVS_CORE": 95,
+    "TWITTER_FOLLOWERS": null
+  },
+  {
+    "name": "solana",
+    "symbol": "sol",
+    "DAILY_TXNS": 96780542,
+    "MAU": 105207831,
+    "FEES": 1708519.9891833998,
+    "WEEKLY_DEVS_CORE": 316,
+    "TWITTER_FOLLOWERS": 3384452
+  },
+  {
+    "name": "ton",
+    "symbol": "ton",
+    "DAILY_TXNS": 360453,
+    "MAU": 2425426,
+    "FEES": 16823.3245305728,
+    "WEEKLY_DEVS_CORE": 87,
+    "TWITTER_FOLLOWERS": null
+  },
+  {
+    "name": "arbitrum",
+    "symbol": "arb",
+    "DAILY_TXNS": 1801946,
+    "MAU": 4233554,
+    "FEES": 10570.253573185326,
+    "WEEKLY_DEVS_CORE": 60,
+    "TWITTER_FOLLOWERS": 1146367
+  },
+  {
+    "name": "base",
+    "symbol": "base",
+    "DAILY_TXNS": 6964818,
+    "MAU": 16210586,
+    "FEES": 115140.9652336104,
+    "WEEKLY_DEVS_CORE": 103,
+    "TWITTER_FOLLOWERS": 942261
+  },
+  {
+    "name": "bsc",
+    "symbol": "bnb",
+    "DAILY_TXNS": 4741676,
+    "MAU": 15509368,
+    "FEES": 497781.74282654835,
+    "WEEKLY_DEVS_CORE": 4,
+    "TWITTER_FOLLOWERS": 14316914
+  },
+  {
+    "name": "bitcoin",
+    "symbol": "btc",
+    "DAILY_TXNS": 467725,
+    "MAU": 11180295,
+    "FEES": 584807.1458922,
+    "WEEKLY_DEVS_CORE": 155,
+    "TWITTER_FOLLOWERS": 7706293
+  },
+  {
+    "name": "optimism",
+    "symbol": "op",
+    "DAILY_TXNS": 823114,
+    "MAU": 1604264,
+    "FEES": 5705.9889415414955,
+    "WEEKLY_DEVS_CORE": 91,
+    "TWITTER_FOLLOWERS": null
+  },
+  {
+    "name": "sei",
+    "symbol": "sei",
+    "DAILY_TXNS": 4220651,
+    "MAU": 2712625,
+    "FEES": 109.59373992574416,
+    "WEEKLY_DEVS_CORE": 16,
+    "TWITTER_FOLLOWERS": 786368
+  },
+  {
+    "name": "sonic",
+    "symbol": "s",
+    "DAILY_TXNS": 574592,
+    "MAU": null,
+    "FEES": 8835.338398699416,
+    "WEEKLY_DEVS_CORE": null,
+    "TWITTER_FOLLOWERS": null
+  },
+  {
+    "name": "zksync",
+    "symbol": "zk",
+    "DAILY_TXNS": 54269,
+    "MAU": 290808,
+    "FEES": 896.06202672,
+    "WEEKLY_DEVS_CORE": 60,
+    "TWITTER_FOLLOWERS": 1514093
+  },
+  {
+    "name": "zora",
+    "symbol": "zora",
+    "DAILY_TXNS": 30463,
+    "MAU": 189920,
+    "FEES": 63.241248500000005,
+    "WEEKLY_DEVS_CORE": 3,
+    "TWITTER_FOLLOWERS": 2958
+  },
+  {
+    "name": "tron",
+    "symbol": "trx",
+    "DAILY_TXNS": 8642306,
+    "MAU": 13659145,
+    "FEES": 1866744.7838683666,
+    "WEEKLY_DEVS_CORE": 19,
+    "TWITTER_FOLLOWERS": 1713678
+  },
+  {
+    "name": "algorand",
+    "symbol": "algo",
+    "DAILY_TXNS": 2067033,
+    "MAU": null,
+    "FEES": 674.9356971727759,
+    "WEEKLY_DEVS_CORE": 47,
+    "TWITTER_FOLLOWERS": 358769
+  },
+  {
+    "name": "acala",
+    "symbol": "aca",
+    "DAILY_TXNS": 2362,
+    "MAU": null,
+    "FEES": 0.28970839311259655,
+    "WEEKLY_DEVS_CORE": 4,
+    "TWITTER_FOLLOWERS": 253586
+  },
+  {
+    "name": "abstract",
+    "symbol": "abstract",
+    "DAILY_TXNS": 483585,
+    "MAU": null,
+    "FEES": 6609.1392745,
+    "WEEKLY_DEVS_CORE": null,
+    "TWITTER_FOLLOWERS": null
+  },
+  {
+    "name": "astar",
+    "symbol": "astr",
+    "DAILY_TXNS": 7000,
+    "MAU": null,
+    "FEES": 57.66748581423446,
+    "WEEKLY_DEVS_CORE": 3,
+    "TWITTER_FOLLOWERS": null
+  },
+  {
+    "name": "beam",
+    "symbol": "beam",
+    "DAILY_TXNS": 15984,
+    "MAU": null,
+    "FEES": 5.464089686004479,
+    "WEEKLY_DEVS_CORE": 1,
+    "TWITTER_FOLLOWERS": null
+  },
+  {
+    "name": "axelar",
+    "symbol": "axl",
+    "DAILY_TXNS": 299235,
+    "MAU": null,
+    "FEES": 87533,
+    "WEEKLY_DEVS_CORE": 24,
+    "TWITTER_FOLLOWERS": 1439
+  },
+  {
+    "name": "berachain",
+    "symbol": "bera",
+    "DAILY_TXNS": 1334079,
+    "MAU": null,
+    "FEES": 589.91817904,
+    "WEEKLY_DEVS_CORE": 20,
+    "TWITTER_FOLLOWERS": 989863
+  },
+  {
+    "name": "bifrost",
+    "symbol": "bnc",
+    "DAILY_TXNS": 2264,
+    "MAU": null,
+    "FEES": 6.883520611316118,
+    "WEEKLY_DEVS_CORE": 1,
+    "TWITTER_FOLLOWERS": null
+  },
+  {
+    "name": "bob",
+    "symbol": "bob",
+    "DAILY_TXNS": 62866,
+    "MAU": null,
+    "FEES": 481.93308750000006,
+    "WEEKLY_DEVS_CORE": 3,
+    "TWITTER_FOLLOWERS": null
+  },
+  {
+    "name": "celo",
+    "symbol": "celo",
+    "DAILY_TXNS": 1353354,
+    "MAU": 1031513,
+    "FEES": 7959.93613936165,
+    "WEEKLY_DEVS_CORE": 167,
+    "TWITTER_FOLLOWERS": 520764
+  },
+  {
+    "name": "cardano",
+    "symbol": "ada",
+    "DAILY_TXNS": null,
+    "MAU": null,
+    "FEES": null,
+    "WEEKLY_DEVS_CORE": 198,
+    "TWITTER_FOLLOWERS": 840144
+  },
+  {
+    "name": "centrifuge",
+    "symbol": "cfg",
+    "DAILY_TXNS": 38,
+    "MAU": null,
+    "FEES": 0.010602442713024926,
+    "WEEKLY_DEVS_CORE": 4,
+    "TWITTER_FOLLOWERS": null
+  },
+  {
+    "name": "defi-kingdoms",
+    "symbol": "jewel",
+    "DAILY_TXNS": 597870,
+    "MAU": null,
+    "FEES": 100.98485353259984,
+    "WEEKLY_DEVS_CORE": 1,
+    "TWITTER_FOLLOWERS": 114797
+  },
+  {
+    "name": "cosmoshub",
+    "symbol": "atom",
+    "DAILY_TXNS": 27220,
+    "MAU": null,
+    "FEES": 760.3068683399999,
+    "WEEKLY_DEVS_CORE": 127,
+    "TWITTER_FOLLOWERS": 570206
+  },
+  {
+    "name": "dexalot",
+    "symbol": "alot",
+    "DAILY_TXNS": 685973,
+    "MAU": null,
+    "FEES": 2451.6982838733984,
+    "WEEKLY_DEVS_CORE": 1,
+    "TWITTER_FOLLOWERS": null
+  },
+  {
+    "name": "fuse",
+    "symbol": "fuse",
+    "DAILY_TXNS": 58294,
+    "MAU": null,
+    "FEES": 0.5697453449251373,
+    "WEEKLY_DEVS_CORE": 1,
+    "TWITTER_FOLLOWERS": 125982
+  },
+  {
+    "name": "flow",
+    "symbol": "flow",
+    "DAILY_TXNS": 226759,
+    "MAU": null,
+    "FEES": 5.547372238117291,
+    "WEEKLY_DEVS_CORE": 62,
+    "TWITTER_FOLLOWERS": 199817
+  },
+  {
+    "name": "frequency",
+    "symbol": "frqcy",
+    "DAILY_TXNS": 259441,
+    "MAU": null,
+    "FEES": null,
+    "WEEKLY_DEVS_CORE": null,
+    "TWITTER_FOLLOWERS": null
+  },
+  {
+    "name": "ethereum",
+    "symbol": "eth",
+    "DAILY_TXNS": 1288148,
+    "MAU": 6756777,
+    "FEES": 462381.8896846525,
+    "WEEKLY_DEVS_CORE": 425,
+    "TWITTER_FOLLOWERS": 3792410
+  },
+  {
+    "name": "gnosis",
+    "symbol": "gno",
+    "DAILY_TXNS": 224677,
+    "MAU": 137198,
+    "FEES": 195.5458600076228,
+    "WEEKLY_DEVS_CORE": 22,
+    "TWITTER_FOLLOWERS": 71305
+  },
+  {
+    "name": "hyperliquid",
+    "symbol": "hype",
+    "DAILY_TXNS": 321348961,
+    "MAU": null,
+    "FEES": 1126903.89,
+    "WEEKLY_DEVS_CORE": 1,
+    "TWITTER_FOLLOWERS": null
+  },
+  {
+    "name": "hydration",
+    "symbol": "hdx",
+    "DAILY_TXNS": 4662,
+    "MAU": null,
+    "FEES": 100.1359413172757,
+    "WEEKLY_DEVS_CORE": 13,
+    "TWITTER_FOLLOWERS": null
+  },
+  {
+    "name": "injective",
+    "symbol": "inj",
+    "DAILY_TXNS": 4280847,
+    "MAU": 76218,
+    "FEES": 4306.2398795534455,
+    "WEEKLY_DEVS_CORE": 13,
+    "TWITTER_FOLLOWERS": null
+  },
+  {
+    "name": "ink",
+    "symbol": "ink",
+    "DAILY_TXNS": 255244,
+    "MAU": null,
+    "FEES": 239.25850207999997,
+    "WEEKLY_DEVS_CORE": null,
+    "TWITTER_FOLLOWERS": 125293
+  },
+  {
+    "name": "internet-computer",
+    "symbol": "icp",
+    "DAILY_TXNS": 664519088,
+    "MAU": null,
+    "FEES": 41509.172077292045,
+    "WEEKLY_DEVS_CORE": 79,
+    "TWITTER_FOLLOWERS": 694102
+  },
+  {
+    "name": "iotex",
+    "symbol": "iotx",
+    "DAILY_TXNS": 79150,
+    "MAU": null,
+    "FEES": 98.15976375,
+    "WEEKLY_DEVS_CORE": 5,
+    "TWITTER_FOLLOWERS": null
+  },
+  {
+    "name": "linea",
+    "symbol": "linea",
+    "DAILY_TXNS": 98785,
+    "MAU": 398486,
+    "FEES": 4086.25248132,
+    "WEEKLY_DEVS_CORE": 24,
+    "TWITTER_FOLLOWERS": 1376795
+  },
+  {
+    "name": "litecoin",
+    "symbol": "ltc",
+    "DAILY_TXNS": 181425,
+    "MAU": 7507751,
+    "FEES": 864.9720896736643,
+    "WEEKLY_DEVS_CORE": 1,
+    "TWITTER_FOLLOWERS": 1198961
+  },
+  {
+    "name": "manta",
+    "symbol": "manta",
+    "DAILY_TXNS": 188930,
+    "MAU": null,
+    "FEES": 4808.780483064454,
+    "WEEKLY_DEVS_CORE": null,
+    "TWITTER_FOLLOWERS": null
+  },
+  {
+    "name": "mantle",
+    "symbol": "mnt",
+    "DAILY_TXNS": 202460,
+    "MAU": null,
+    "FEES": 1211.9035062271769,
+    "WEEKLY_DEVS_CORE": 9,
+    "TWITTER_FOLLOWERS": 62810
+  },
+  {
+    "name": "moonbeam",
+    "symbol": "glmr",
+    "DAILY_TXNS": 102818,
+    "MAU": null,
+    "FEES": 169.92974713408185,
+    "WEEKLY_DEVS_CORE": 15,
+    "TWITTER_FOLLOWERS": null
+  },
+  {
+    "name": "multiversx",
+    "symbol": "egld",
+    "DAILY_TXNS": 233935,
+    "MAU": null,
+    "FEES": 404.08780209793775,
+    "WEEKLY_DEVS_CORE": 6,
+    "TWITTER_FOLLOWERS": 1087085
+  },
+  {
+    "name": "mythos",
+    "symbol": "myth",
+    "DAILY_TXNS": 92226,
+    "MAU": null,
+    "FEES": null,
+    "WEEKLY_DEVS_CORE": null,
+    "TWITTER_FOLLOWERS": null
+  },
+  {
+    "name": "neuroweb",
+    "symbol": "neuro",
+    "DAILY_TXNS": 48096,
+    "MAU": null,
+    "FEES": 0.0035608407472716456,
+    "WEEKLY_DEVS_CORE": null,
+    "TWITTER_FOLLOWERS": null
+  },
+  {
+    "name": "polkadot",
+    "symbol": "dot",
+    "DAILY_TXNS": 12334,
+    "MAU": null,
+    "FEES": 1102.5326547602326,
+    "WEEKLY_DEVS_CORE": 103,
+    "TWITTER_FOLLOWERS": 1583040
+  },
+  {
+    "name": "osmosis",
+    "symbol": "osmo",
+    "DAILY_TXNS": 6592,
+    "MAU": null,
+    "FEES": 7.785046248587699,
+    "WEEKLY_DEVS_CORE": 48,
+    "TWITTER_FOLLOWERS": 194368
+  },
+  {
+    "name": "soneium",
+    "symbol": "soneium",
+    "DAILY_TXNS": 1395543,
+    "MAU": null,
+    "FEES": 3966.9222621599997,
+    "WEEKLY_DEVS_CORE": null,
+    "TWITTER_FOLLOWERS": 267934
+  },
+  {
+    "name": "stacks",
+    "symbol": "stx",
+    "DAILY_TXNS": 13259,
+    "MAU": 19447,
+    "FEES": 881.846638510861,
+    "WEEKLY_DEVS_CORE": 73,
+    "TWITTER_FOLLOWERS": 234300
+  },
+  {
+    "name": "starknet",
+    "symbol": "strk",
+    "DAILY_TXNS": 412540,
+    "MAU": 62030,
+    "FEES": 600.2012442220288,
+    "WEEKLY_DEVS_CORE": 168,
+    "TWITTER_FOLLOWERS": 346860
+  },
+  {
+    "name": "stellar",
+    "symbol": "xlm",
+    "DAILY_TXNS": 1800623,
+    "MAU": 594313,
+    "FEES": 2835.0512376583356,
+    "WEEKLY_DEVS_CORE": 189,
+    "TWITTER_FOLLOWERS": 826817
+  },
+  {
+    "name": "story",
+    "symbol": "ip",
+    "DAILY_TXNS": 353975,
+    "MAU": null,
+    "FEES": 20.245064139999997,
+    "WEEKLY_DEVS_CORE": 4,
+    "TWITTER_FOLLOWERS": 680814
+  },
+  {
+    "name": "stride",
+    "symbol": "strd",
+    "DAILY_TXNS": 57615,
+    "MAU": 10199,
+    "FEES": 1090.4581842736327,
+    "WEEKLY_DEVS_CORE": null,
+    "TWITTER_FOLLOWERS": null
+  },
+  {
+    "name": "unichain",
+    "symbol": "unichain",
+    "DAILY_TXNS": 849442,
+    "MAU": null,
+    "FEES": 2064.2561275499997,
+    "WEEKLY_DEVS_CORE": null,
+    "TWITTER_FOLLOWERS": null
+  },
+  {
+    "name": "worldchain",
+    "symbol": "wld",
+    "DAILY_TXNS": 1034804,
+    "MAU": null,
+    "FEES": 7312.21808096,
+    "WEEKLY_DEVS_CORE": 30,
+    "TWITTER_FOLLOWERS": 490504
+  }
+]
