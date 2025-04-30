@@ -4,7 +4,6 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
@@ -15,4 +14,18 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()],
     }),
   ],
+  server: {
+    proxy: {
+      '/api/llama': {
+        target: 'https://api.llama.fi',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api\/llama/, ''),
+      },
+      '/api/coingecko': {
+        target: 'https://api.coingecko.com',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api\/coingecko/, ''),
+      },
+    },
+  },
 })
