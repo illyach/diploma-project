@@ -24,7 +24,7 @@
   const navItems = [
     { name: 'TVL', route: '/about' },
     { name: 'CHAINS', route: '/about' },
-    { name: 'AI HELPER', route: '/about' },
+    { name: 'AI HELPER', route: '/aihelper' },
     { name: 'CHAINSCORE', route: '/chainscore' },
   ]
   </script>

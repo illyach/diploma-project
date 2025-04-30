@@ -17,9 +17,12 @@ watch(input, async (newVal) => {
     const res = await fetch('https://api.llama.fi/v2/chains');
     const data = await res.json();
 
-    const found = data.find((item) =>
-      item.name.toLowerCase() === newVal.toLowerCase()
-    );
+    const found = data.find((item) => {
+  const nameMatch = item.name?.toLowerCase() === newVal.toLowerCase();
+  const symbolMatch = item.tokenSymbol?.toLowerCase() === newVal.toLowerCase();
+  return nameMatch || symbolMatch;
+});
+
 
     if (found && found.tvl) {
       originalTvl.value = found.tvl;

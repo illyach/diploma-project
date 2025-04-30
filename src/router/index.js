@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../pages/Home.vue'
 import About from '../pages/About.vue'
 import ChainScore from '../pages/ChainScore.vue'
+import AiHelper from '../pages/AiHelper.vue'
 const routes = [
   {
     path: '/',
@@ -18,6 +19,11 @@ const routes = [
     path: '/chainscore',
     name: 'ChainScore',
     component: ChainScore
+  },
+  {
+    path: '/aihelper',
+    name: 'AiHelper',
+    component: AiHelper
   }
 ]
 
