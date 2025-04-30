@@ -9,79 +9,69 @@
         @sort-change="handleSortChange"
         class="pure-black-table"
       >
-        <el-table-column
-          prop="name"
-          label="Blockchain"
-          width="180"
-          sortable
-        />
-        <el-table-column
-          prop="DAILY_TXNS"
-          label="Daily Transactions"
-          sortable
-          :formatter="formatNumber"
-        />
-        <el-table-column
-          prop="MAU"
-          label="Monthly Active Users"
-          sortable
-          :formatter="formatNumber"
-        />
-        <el-table-column
-          prop="FEES"
-          label="Fees"
-          sortable
-          :formatter="formatCurrency"
-        />
-        <el-table-column
-          prop="WEEKLY_DEVS_CORE"
-          label="Core Devs"
-          sortable
-        />
-        <el-table-column
-          prop="TWITTER_FOLLOWERS"
-          label="Twitter Followers"
-          sortable
-          :formatter="formatNumber"
-        />
+        <el-table-column prop="name" label="Blockchain" width="180" sortable />
+        <el-table-column prop="DAILY_TXNS" label="Daily Transactions" sortable :formatter="formatNumber" />
+        <el-table-column prop="MAU" label="Monthly Active Users" sortable :formatter="formatNumber" />
+        <el-table-column prop="FEES" label="Fees" sortable :formatter="formatCurrency" />
+        <el-table-column prop="WEEKLY_DEVS_CORE" label="Core Devs" sortable />
+        <el-table-column prop="TWITTER_FOLLOWERS" label="Twitter Followers" sortable :formatter="formatNumber" />
       </el-table>
+  
+      <div class="charts-container">
+        <BarChart :data="chartData('MAU')" label="Monthly Active Users" />
+        <BarChart :data="chartData('DAILY_TXNS')" label="Daily Transactions" />
+        <BarChart :data="chartData('FEES')" label="Fees (USD)" />
+        <BarChart :data="chartData('WEEKLY_DEVS_CORE')" label="Weekly Core Developers" />
+      </div>
     </div>
   </template>
   
+  
   <script>
 import chainsData from '../assets/chain_stats.json'
-  
-  export default {
-    data() {
-      return {
-        tableData: chainsData,
-        filteredData: [...chainsData],
-        sortOptions: {
-          prop: 'DAILY_TXNS',
-          order: 'descending'
-        }
+import BarChart from '../components/BarChart.vue'
+
+
+export default {
+  components: { BarChart },
+  data() {
+    return {
+      tableData: chainsData,
+      filteredData: [...chainsData],
+      sortOptions: {
+        prop: 'DAILY_TXNS',
+        order: 'descending'
       }
-    },
-    methods: {
-      formatNumber(row, column, cellValue) {
-        return cellValue ? cellValue.toLocaleString() : 'N/A'
-      },
-      formatCurrency(row, column, cellValue) {
-        return cellValue ? `$${cellValue.toLocaleString(undefined, { maximumFractionDigits: 2 })}` : 'N/A'
-      },
-      handleSortChange({ prop, order }) {
-        this.sortOptions = { prop, order }
-        this.filteredData.sort((a, b) => {
-          const valA = a[prop] || 0
-          const valB = b[prop] || 0
-          return order === 'ascending' ? valA - valB : valB - valA
-        })
-      }
-    },
-    created() {
-      this.handleSortChange(this.sortOptions)
     }
+  },
+  methods: {
+    formatNumber(row, column, cellValue) {
+      return cellValue ? cellValue.toLocaleString() : 'N/A'
+    },
+    formatCurrency(row, column, cellValue) {
+      return cellValue ? `$${cellValue.toLocaleString(undefined, { maximumFractionDigits: 2 })}` : 'N/A'
+    },
+    handleSortChange({ prop, order }) {
+      this.sortOptions = { prop, order }
+      this.filteredData.sort((a, b) => {
+        const valA = a[prop] || 0
+        const valB = b[prop] || 0
+        return order === 'ascending' ? valA - valB : valB - valA
+      })
+    },
+    chartData(metric) {
+  return this.filteredData.map(item => ({
+    name: item.name || 'Unknown',
+    value: typeof item[metric] === 'number' ? item[metric] : 0
+  }))
+}
+
+  },
+  created() {
+    this.handleSortChange(this.sortOptions)
   }
+}
+
   </script>
   
   <style scoped>
@@ -114,7 +104,7 @@ import chainsData from '../assets/chain_stats.json'
   }
   
   .pure-black-table ::v-deep .el-table__body tr:hover>td {
-    background-color: #292135 !important;
+    background-color: #211338 !important;
   }
   
   .pure-black-table ::v-deep .el-table--border {
