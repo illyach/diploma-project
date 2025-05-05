@@ -8,14 +8,31 @@
         </el-radio-group>
       </div>
   
-      <!-- Відображення графіків або таблиці на основі вибору -->
-      <div v-if="viewMode === 'charts'" class="charts-container">
-        <BarChart :data="chartData('MAU')" label="Monthly Active Users" />
-        <BarChart :data="chartData('DAILY_TXNS')" label="Daily Transactions" />
-        <BarChart :data="chartData('FEES')" label="Fees (USD)" />
-        <BarChart :data="chartData('WEEKLY_DEVS_CORE')" label="Weekly Core Developers" />
+      <!-- Селектор метрики для графіків -->
+      <div v-if="viewMode === 'charts'" style="text-align: center; margin-bottom: 20px;">
+        <el-select v-model="selectedMetric" placeholder="Оберіть метрику" style="width: 250px;">
+          <el-option label="All" value="ALL" />
+          <el-option label="Monthly Users" value="MAU" />
+          <el-option label="Daily Transactions" value="DAILY_TXNS" />
+          <el-option label="Fees" value="FEES" />
+          <el-option label="Core Developers" value="WEEKLY_DEVS_CORE" />
+        </el-select>
       </div>
   
+      <!-- Графіки -->
+      <div v-if="viewMode === 'charts'" class="charts-container">
+        <template v-if="selectedMetric === 'ALL'">
+          <BarChart :data="chartData('MAU')" label="Monthly Active Users" />
+          <BarChart :data="chartData('DAILY_TXNS')" label="Daily Transactions" />
+          <BarChart :data="chartData('FEES')" label="Fees (USD)" />
+          <BarChart :data="chartData('WEEKLY_DEVS_CORE')" label="Weekly Core Developers" />
+        </template>
+        <template v-else>
+          <BarChart :data="chartData(selectedMetric)" :label="metricLabel[selectedMetric]" />
+        </template>
+      </div>
+  
+      <!-- Таблиця -->
       <el-table
         v-if="viewMode === 'table'"
         :data="filteredData"
@@ -36,7 +53,6 @@
     </div>
   </template>
   
-  
   <script>
   import chainsData from '../assets/chain_stats.json'
   import BarChart from '../components/BarChart.vue'
@@ -51,7 +67,14 @@
           prop: 'DAILY_TXNS',
           order: 'descending'
         },
-        viewMode: 'table' // Початковий режим відображення: таблиця
+        viewMode: 'table',
+        selectedMetric: 'ALL',
+        metricLabel: {
+          MAU: 'Monthly Active Users',
+          DAILY_TXNS: 'Daily Transactions',
+          FEES: 'Fees (USD)',
+          WEEKLY_DEVS_CORE: 'Weekly Core Developers'
+        }
       }
     },
     methods: {
@@ -59,7 +82,9 @@
         return cellValue ? cellValue.toLocaleString() : 'N/A'
       },
       formatCurrency(row, column, cellValue) {
-        return cellValue ? `$${cellValue.toLocaleString(undefined, { maximumFractionDigits: 2 })}` : 'N/A'
+        return cellValue
+          ? `$${cellValue.toLocaleString(undefined, { maximumFractionDigits: 2 })}`
+          : 'N/A'
       },
       handleSortChange({ prop, order }) {
         this.sortOptions = { prop, order }
@@ -70,18 +95,18 @@
         })
       },
       chartData(metric) {
-        return this.filteredData.map(item => ({
+        const data = this.filteredData.map(item => ({
           name: item.name || 'Unknown',
           value: typeof item[metric] === 'number' ? item[metric] : 0
         }))
-      },
+        return [...data].sort((a, b) => b.value - a.value)
+      }
     },
     created() {
       this.handleSortChange(this.sortOptions)
     }
   }
   </script>
-  
   
   <style scoped>
   .black-table-container {
@@ -112,7 +137,7 @@
     font-weight: bold;
   }
   
-  .pure-black-table ::v-deep .el-table__body tr:hover>td {
+  .pure-black-table ::v-deep .el-table__body tr:hover > td {
     background-color: #211338 !important;
   }
   
@@ -128,3 +153,4 @@
     border-bottom: 1px solid #333;
   }
   </style>
+  

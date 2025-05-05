@@ -41,6 +41,8 @@ const getColor = (value: number) => {
       :percentage="percentage"
       :color="getColor"
       :width="360"
+      :stroke-width="20"
+      :format="(percent) => `${percent}`" 
     />
   </div>
 </template>
