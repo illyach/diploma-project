@@ -1,11 +1,12 @@
 <template>
     <header class="header">
       <div class="container">
-        <div class="logo-section">
+        <RouterLink to="/" >
+        <div class="logo-section" >
           <img src="../assets/line-graph-with-arrow-svgrepo-com.svg" alt="Logo" class="logo" />
           <span class="logo-text">TrendChain</span>
         </div>
-  
+     </RouterLink>
         <nav class="nav">
           <RouterLink
             v-for="item in navItems"
@@ -80,5 +81,15 @@
   .nav-link:hover {
     color: white;
   }
+span,
+a,
+.nav-link,
+.logo-section,
+.nav-link:visited,
+.logo-link,
+.logo-link:visited {
+
+  text-decoration: none;
+}
   </style>
   
