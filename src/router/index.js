@@ -1,9 +1,10 @@
 // src/router/index.js
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../pages/Home.vue'
-import About from '../pages/About.vue'
+import Metrics from '../pages/Metrics.vue'
 import ChainScore from '../pages/ChainScore.vue'
 import AiHelper from '../pages/AiHelper.vue'
+import Top100 from '../pages/Top100.vue'
 const routes = [
   {
     path: '/',
@@ -11,9 +12,14 @@ const routes = [
     component: Home
   },
   {
-    path: '/about',
-    name: 'About',
-    component: About
+    path: '/top100',
+    name: 'Top100',
+    component: Top100
+  },
+  {
+    path: '/metrics',
+    name: 'Metrics',
+    component: Metrics
   },
   {
     path: '/chainscore',

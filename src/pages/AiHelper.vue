@@ -1,4 +1,5 @@
 <template>
+  <div class="all_page">
     <div class="chat-wrapper">
       <div class="chat-box">
         <!-- Список повідомлень -->
@@ -19,6 +20,7 @@
         <el-input v-model="userInput" placeholder="Ask a question..." @keyup.enter="sendQuery(userInput)" />
       </div>
     </div>
+  </div>
   </template>
   
   <script setup>
@@ -70,6 +72,7 @@
   .chat-wrapper {
     display: flex;
     flex-direction: column;
+
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
