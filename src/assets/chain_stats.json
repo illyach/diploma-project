@@ -42,7 +42,7 @@
     "MAU": 5015832,
     "FEES": 10154.932701084617,
     "WEEKLY_DEVS_CORE": 95,
-    "TWITTER_FOLLOWERS": null
+    "TWITTER_FOLLOWERS": 2043749
   },
   {
     "name": "solana",
@@ -60,7 +60,7 @@
     "MAU": 2425426,
     "FEES": 16823.3245305728,
     "WEEKLY_DEVS_CORE": 87,
-    "TWITTER_FOLLOWERS": null
+    "TWITTER_FOLLOWERS": 2404452
   },
   {
     "name": "arbitrum",
@@ -105,7 +105,7 @@
     "MAU": 1604264,
     "FEES": 5705.9889415414955,
     "WEEKLY_DEVS_CORE": 91,
-    "TWITTER_FOLLOWERS": null
+    "TWITTER_FOLLOWERS": 700000
   },
   {
     "name": "sei",
@@ -123,7 +123,7 @@
     "MAU": null,
     "FEES": 8835.338398699416,
     "WEEKLY_DEVS_CORE": null,
-    "TWITTER_FOLLOWERS": null
+    "TWITTER_FOLLOWERS": 860000
   },
   {
     "name": "zksync",
@@ -339,7 +339,7 @@
     "MAU": null,
     "FEES": 1126903.89,
     "WEEKLY_DEVS_CORE": 1,
-    "TWITTER_FOLLOWERS": null
+    "TWITTER_FOLLOWERS": 240000
   },
   {
     "name": "hydration",

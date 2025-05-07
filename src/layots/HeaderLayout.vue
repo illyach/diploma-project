@@ -24,7 +24,7 @@
   <script setup>
   const navItems = [
     { name: 'Top 100', route: '/top100' },
-    { name: 'CHAINS', route: '/metrics' },
+    { name: 'Metrics', route: '/metrics' },
     { name: 'AI HELPER', route: '/aihelper' },
     { name: 'CHAINSCORE', route: '/chainscore' },
   ]
