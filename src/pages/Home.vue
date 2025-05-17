@@ -2,11 +2,33 @@
     <div class="landing-container">
       <!-- Хедер і опис -->
       <section class="hero">
-        <h1>Рейтинг блокчейнів на основі реальних метрик</h1>
-        <p>
-          TrendChain допомагає обчислювати рейтинг блокчейн-проєктів за їх активністю, розробкою,
-          комісіями, транзакціями та іншими показниками.
-        </p>
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1>Рейтинг блокчейнів на основі реальних метрик</h1>
+            <p>
+              TrendChain допомагає обчислювати рейтинг блокчейн-проєктів за їх активністю, розробкою,
+              комісіями, транзакціями та іншими показниками.
+            </p>
+          </div>
+          <div class="score-widget">
+            <div class="score-container">
+              <el-progress
+                type="dashboard"
+                :percentage="percentage2"
+                :width="200"
+                :stroke-width="15"
+                :show-text="true"
+                :color="customColors"
+              >
+                <template #default>
+                  <div class="progress-content">
+                    <span class="score-number">{{ displayNumber }}</span>
+                  </div>
+                </template>
+              </el-progress>
+            </div>
+          </div>
+        </div>
       </section>
   
       <!-- Карусель логотипів -->
@@ -22,25 +44,29 @@
   
       <!-- Особливості -->
       <section class="features">
-        <h2>Що дає TrendChain?</h2>
-        <ul>
-          <li>
-            <h3>🔍 Виявлення потенціалу</h3>
-            <p>Знаходь перспективні Layer 1 блокчейни за MAU, транзакціями та активністю мережі.</p>
-          </li>
-          <li>
-            <h3>📈 Недооцінені активи</h3>
-            <p>Порівнюй метрики блокчейнів і приймай розумніші інвестиційні рішення.</p>
-          </li>
-          <li>
-            <h3>🛠️ Інсайти по розробці</h3>
-            <p>Аналізуй активність розробників і прогнозуй розвиток проєкту.</p>
-          </li>
-          <li>
-            <h3>⚠️ Анти-SCAM захист</h3>
-            <p>Проєкти без активності користувачів і транзакцій — ймовірно SCAM. Ми це виявляємо.</p>
-          </li>
-        </ul>
+        <h2>Our Features</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">💎</div>
+            <h3>Find GEMs on early stage</h3>
+            <p>When Venture Capitals, Crypto projects, Crypto influencers and other significant accounts like crazy follows to particular project, more likely you find a GEM</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🚀</div>
+            <h3>Find Undervalued coins and NFT</h3>
+            <p>Compare the TwitterScore of projects, do analyze of significant followers and make better investment decisions</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">💡</div>
+            <h3>Get Insides</h3>
+            <p>You can see list of significant followers and the history when they started to follow to project. Based on this you can predict future partnerships and investments</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">⚙️</div>
+            <h3>Avoid SCAMS</h3>
+            <p>If you find great project which sell the tokens with many thousands of followers, but no one significant from crypto space follows to them, more likely you find the SCAM</p>
+          </div>
+        </div>
       </section>
   
       <!-- Чому важливо -->
@@ -54,7 +80,8 @@
     </div>
   </template>
   
-  <script scoped>
+  <script setup>
+import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
 import near from '../assets/near.svg'
 import btc from '../assets/btc.svg'
 import sol from '../assets/sol.svg'
@@ -68,38 +95,70 @@ import arb from '../assets/arb.svg'
 import pol from '../assets/pol.svg'
 import ftm from '../assets/ftm.svg'
 import ton from '../assets/ton.svg'
+import { ElProgress } from 'element-plus'
+import 'element-plus/theme-chalk/el-progress.css'
 
-export default {
-  name: 'LandingPage',
-  data() {
-    return {
-      logos: [
-        near, btc, sol, eth, avax, bnb, apt,
-        op, ltc, arb, pol, ftm, ton
-      ]
-    }
-  },
-  computed: {
-    repeatedLogos() {
-      return [...this.logos, ...this.logos]
-    }
-  },
-  mounted() {
-    fetch('https://api.coingecko.com/api/v3/global')
-      .then(res => res.json())
-      .then(data => {
-        const marketCaps = data.data.total_market_cap
-        console.log('total_market_cap:', marketCaps)
+const logos = [
+  near, btc, sol, eth, avax, bnb, apt,
+  op, ltc, arb, pol, ftm, ton
+]
 
-        // Спосіб обчислення суми №1
-        const sum = Object.values(marketCaps).reduce((acc, val) => acc + val, 0)
-        console.log('Сума total_market_cap:', sum)
-      })
-      .catch(error => {
-        console.error('Помилка при запиті до CoinGecko:', error)
-      })
-  }
+const percentage2 = ref(0)
+const currentNumber = ref(0)
+let animationInterval = null
+
+const customColors = [
+  { color: '#FF0000', percentage: 20 },
+  { color: '#FF4500', percentage: 40 },
+  { color: '#FFA500', percentage: 60 },
+  { color: '#FFD700', percentage: 80 },
+  { color: '#4ADE80', percentage: 100 }
+]
+
+const repeatedLogos = [...logos, ...logos]
+
+const displayNumber = computed(() => {
+  return Math.round(currentNumber.value).toLocaleString()
+})
+
+const startProgressAnimation = () => {
+  const duration = 2000 // тривалість анімації в мс
+  const steps = 100
+  const stepDuration = duration / steps
+  const stepValue = 100 / steps
+
+  percentage2.value = 0
+  currentNumber.value = 0
+
+  animationInterval = setInterval(() => {
+    if (percentage2.value < 100) {
+      percentage2.value = Math.min(percentage2.value + stepValue, 100)
+      currentNumber.value = percentage2.value // Синхронізуємо число з прогресом
+    } else {
+      clearInterval(animationInterval)
+    }
+  }, stepDuration)
 }
+
+onMounted(() => {
+  startProgressAnimation()
+
+  fetch('https://api.coingecko.com/api/v3/global')
+    .then(res => res.json())
+    .then(data => {
+      const marketCaps = data.data.total_market_cap
+      console.log('total_market_cap:', marketCaps)
+      const sum = Object.values(marketCaps).reduce((acc, val) => acc + val, 0)
+      console.log('Сума total_market_cap:', sum)
+    })
+    .catch(error => {
+      console.error('Помилка при запиті до CoinGecko:', error)
+    })
+})
+
+onBeforeUnmount(() => {
+  if (animationInterval) clearInterval(animationInterval)
+})
 </script>
 
   
@@ -120,59 +179,133 @@ export default {
   }
   
   .hero {
-    text-align: center;
-    margin-bottom: 40px;
+    padding: 60px 20px;
+    background-color: #121212;
+  }
+  
+  .hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+  }
+  
+  .hero-text {
+    flex: 1;
+    max-width: 600px;
   }
   
   .hero h1 {
-    font-size: 2rem;
+    font-size: 3.5rem;
     font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
   }
   
   .hero p {
+    font-size: 1.2rem;
+    color: #A0A0A0;
+    line-height: 1.6;
+  }
+  
+  .score-widget {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .score-container {
+    background: #1E1E1E;
+    border-radius: 20px;
+    padding: 50px;
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .progress-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .score-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  
+  .score-label {
+    text-align: center;
+    color: #fff;
     font-size: 1.1rem;
-    color: #ccc;
-    max-width: 600px;
-    margin: 10px auto;
+  }
+  
+  .monitoring-text {
+    color: #A0A0A0;
+    font-size: 0.9rem;
+    margin-top: 5px;
+  }
+  
+  .empty-center {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: #1E1E1E;
   }
   
   .features {
-    margin: 40px 0;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 80px 0;
+    padding: 0 20px;
   }
   
   .features h2 {
     text-align: center;
-    margin-bottom: 30px;
+    font-size: 2.5rem;
+    margin-bottom: 60px;
+    color: #ffffff;
   }
   
-  .features ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    padding: 0;
-    list-style: none;
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
   }
   
-  .features li {
-    flex: 0 0 calc(50% - 20px);
-    background: #1e1e1e;
+  .feature-card {
+    background: #1E1E1E;
+    border-radius: 20px;
     padding: 40px;
-    border-radius: 15px;
-    box-sizing: border-box;
-    font-size: 16px;
+    transition: transform 0.3s ease;
   }
   
-  .features h3 {
-    margin-bottom: 10px;
-    font-size: 22px;
+  .feature-card:hover {
+    transform: translateY(-5px);
   }
   
-  .features p {
-    font-size: 15px;
+  .feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #ffffff;
+  }
+  
+  .feature-card p {
+    font-size: 1rem;
     line-height: 1.6;
+    color: #A0A0A0;
   }
   
   .why {
@@ -222,14 +355,28 @@ export default {
     }
   }
   
-  @media (max-width: 600px) {
-    .features ul {
-      display: block;
+  @media (max-width: 1024px) {
+    .hero-content {
+      flex-direction: column;
+      text-align: center;
     }
-    
-    .features li {
-      flex: 0 0 100%;
-      margin-bottom: 20px;
+
+    .hero h1 {
+      font-size: 2.5rem;
+    }
+
+    .score-container {
+      margin-top: 40px;
+    }
+  }
+  
+  :deep(.el-progress-dashboard) {
+    .el-progress-dashboard__track {
+      stroke: #2C2C2C;
+    }
+    .el-progress-dashboard__path {
+      stroke: linear-gradient(90deg, #FF6B00 0%, #FFB800 50%, #4ADE80 100%);
+      stroke-linecap: round;
     }
   }
   </style>
