@@ -1,14 +1,14 @@
 <template>
     <div class="landing-container">
+      <div class="language-switcher-container">
+        <LanguageSwitcher @language-change="changeLanguage" />
+      </div>
       <!-- Хедер і опис -->
       <section class="hero">
         <div class="hero-content">
           <div class="hero-text">
-            <h1>Рейтинг блокчейнів на основі реальних метрик</h1>
-            <p>
-              TrendChain допомагає обчислювати рейтинг блокчейн-проєктів за їх активністю, розробкою,
-              комісіями, транзакціями та іншими показниками.
-            </p>
+            <h1>{{ t.hero.title }}</h1>
+            <p>{{ t.hero.description }}</p>
           </div>
           <div class="score-widget">
             <div class="score-container">
@@ -44,44 +44,35 @@
   
       <!-- Особливості -->
       <section class="features">
-        <h2>Our Features</h2>
+        <h2>{{ t.features.title }}</h2>
         <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon">💎</div>
-            <h3>Find GEMs on early stage</h3>
-            <p>When Venture Capitals, Crypto projects, Crypto influencers and other significant accounts like crazy follows to particular project, more likely you find a GEM</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">🚀</div>
-            <h3>Find Undervalued coins and NFT</h3>
-            <p>Compare the TwitterScore of projects, do analyze of significant followers and make better investment decisions</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">💡</div>
-            <h3>Get Insides</h3>
-            <p>You can see list of significant followers and the history when they started to follow to project. Based on this you can predict future partnerships and investments</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">⚙️</div>
-            <h3>Avoid SCAMS</h3>
-            <p>If you find great project which sell the tokens with many thousands of followers, but no one significant from crypto space follows to them, more likely you find the SCAM</p>
+          <div v-for="(card, index) in t.features.cards" :key="index" class="feature-card">
+            <div class="feature-icon">{{ ['💎', '🚀', '💡', '⚙️'][index] }}</div>
+            <h3>{{ card.title }}</h3>
+            <p>{{ card.description }}</p>
           </div>
         </div>
       </section>
   
       <!-- Чому важливо -->
       <section class="why">
-        <h2>Чому це важливо?</h2>
-        <p>
-          Метрики користувачів, обсяг транзакцій, збори й активність розробників — це справжні
-          показники якості блокчейну. TrendChain дає оцінку по суті, а не за хайпом.
-        </p>
+        <div class="why-card">
+          <div class="why-content">
+            <h2>{{ t.why.title }}</h2>
+            <p>{{ t.why.description }}</p>
+          </div>
+          <div class="graph-container">
+            <img src="../assets/graph.jpg" alt="Twitter Score Graph" class="graph-image">
+          </div>
+        </div>
       </section>
     </div>
   </template>
   
   <script setup>
 import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
+import LanguageSwitcher from '../components/LanguageSwitcher.vue'
+import { translations } from '../locales/translations'
 import near from '../assets/near.svg'
 import btc from '../assets/btc.svg'
 import sol from '../assets/sol.svg'
@@ -97,6 +88,13 @@ import ftm from '../assets/ftm.svg'
 import ton from '../assets/ton.svg'
 import { ElProgress } from 'element-plus'
 import 'element-plus/theme-chalk/el-progress.css'
+
+const currentLanguage = ref('en')
+const t = computed(() => translations[currentLanguage.value])
+
+const changeLanguage = (lang) => {
+  currentLanguage.value = lang
+}
 
 const logos = [
   near, btc, sol, eth, avax, bnb, apt,
@@ -179,7 +177,7 @@ onBeforeUnmount(() => {
   }
   
   .hero {
-    padding: 60px 20px;
+    padding: 0 20px;
     background-color: #121212;
   }
   
@@ -309,12 +307,56 @@ onBeforeUnmount(() => {
   }
   
   .why {
-    margin: 60px 0;
-    text-align: center;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-    color: #ddd;
+    margin: 120px 0;
+    padding: 0 20px;
+  }
+  
+  .why-card {
+    background: #1E1E1E;
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    gap: 80px;
+    align-items: center;
+  }
+  
+  .why-content {
+    flex: 1;
+    margin:0px 0px 20px 30px;
+  }
+  
+  .why-content h2 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #ffffff;
+  }
+  
+  .why-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #A0A0A0;
+    margin-bottom: 20px;
+  }
+  
+  .why-content p:last-child {
+    margin-bottom: 0;
+  }
+  
+  .graph-container {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .graph-image {
+    max-width: 600px;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
   }
   
   .carousel-wrapper {
@@ -368,6 +410,21 @@ onBeforeUnmount(() => {
     .score-container {
       margin-top: 40px;
     }
+
+    .why-card {
+      flex-direction: column;
+      text-align: center;
+      gap: 40px;
+      padding: 40px;
+    }
+
+    .why-content h2 {
+      font-size: 1.8rem;
+    }
+
+    .graph-image {
+      max-width: 100%;
+    }
   }
   
   :deep(.el-progress-dashboard) {
@@ -378,5 +435,15 @@ onBeforeUnmount(() => {
       stroke: linear-gradient(90deg, #FF6B00 0%, #FFB800 50%, #4ADE80 100%);
       stroke-linecap: round;
     }
+  }
+
+  .language-switcher-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
   }
   </style>
